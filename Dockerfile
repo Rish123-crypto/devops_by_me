@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM httpd:latest
 MAINTAINER rishabhsaxena882@gmail.com
 RUN yum install -y httpd \
  zip \
@@ -6,7 +6,7 @@ RUN yum install -y httpd \
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page279/ecourses.zip/var/www/html/
 WORKDIR /var/www/html
 RUN unzip ecourses.zip
-RUN cp -rvf ecourses/* .
-RUN rm -rf ecourses ecourses.zip
-CMD ["/usr/sbin/https", "-D", "FOREGROUND"]
+RUN cp -rvf online-courses-html-template/* .
+RUN rm -rf online-courses-html-template ecourses.zip
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
